@@ -1,0 +1,6 @@
+Experiment,ROC-AUC,PR-AUC,Sensitivity,Specificity,F1,MCC,TP,FP,FN,TN
+Quantum (ideal),0.870352,0.011658,0.0,1.0,0.0,0.0,0,0,11,76682
+Quantum (1000 shots),0.926338,0.015318,0.0,1.0,0.0,0.0,0,0,11,76682
+No entanglement,0.917112,0.031935,0.0,1.0,0.0,0.0,0,0,11,76682
+Unbounded embedding,0.921194,0.021714,0.0,1.0,0.0,0.0,0,0,11,76682
+Classical baseline,0.948333,0.036357,0.0,1.0,0.0,0.0,0,0,11,76682

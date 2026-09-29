@@ -1,0 +1,22 @@
+Canonical 4-Qubit Hybrid Variational Quantum Classifier Circuit
+============================================================
+
+Architecture:
+  Input: 24-dim binary mismatch vector
+  Linear(24, 4) + sigmoid × (π/2) → bounded angles ∈ [0, π/2]
+  RX(angle[i]) on qubit i — data embedding (4 qubits)
+  RX(θ[i]) on qubit i — trainable variational layer (4 params)
+  CNOT ring: 0→1, 1→2, 2→3, 3→0
+  ⟨Z⟩ measurement on all 4 qubits
+  Linear(4, 1) → logit output
+
+Total trainable parameters: 109
+  - fc_in:  100 (24×4 weights + 4 biases)
+  - qlayer:   4 (1 layer × 4 qubits)
+  - fc_out:   5 (4×1 weights + 1 bias)
+
+PennyLane circuit drawing:
+0: ──RX(0.50)──RX(0.10)─╭●───────╭X─┤  <Z>
+1: ──RX(0.30)──RX(0.20)─╰X─╭●────│──┤  <Z>
+2: ──RX(0.70)──RX(0.30)────╰X─╭●─│──┤  <Z>
+3: ──RX(0.10)──RX(0.40)───────╰X─╰●─┤  <Z>

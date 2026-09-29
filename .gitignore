@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.env
+IONQ_API_KEY
+IONQ_CRISPR_OFFTARGET_FINAL_PACKAGE.zip

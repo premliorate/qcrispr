@@ -1,0 +1,41 @@
+
+IonQ Research Credit Application — Experiment Summary
+======================================================
+
+Project: Reproducible Quantum Simulation for CRISPR-Cas9 Off-Target Prediction
+Architecture: 4-Qubit Hybrid Variational Quantum Classifier (109 parameters)
+
+Dataset: Listgarten Dataset II/6 (22 gRNA, 383463 rows,
+         56 positives, imbalance 1:6846)
+
+Circuit:
+  • 4 qubits
+  • Classical bottleneck: Linear(24→4) + sigmoid × π/2
+  • Data embedding: 4× RX gates (bounded angles ∈ [0, π/2])
+  • Variational layer: 4× RX gates (trainable)
+  • Entanglement: CNOT ring (0→1, 1→2, 2→3, 3→0)
+  • Measurement: ⟨Z⟩ on all 4 qubits
+  • Classical output: Linear(4→1)
+  • Total trainable parameters: 109 (100 classical + 4 quantum + 5 classical)
+
+Training: Adam (lr=0.005), BCEWithLogitsLoss(pos_weight=6816.11), 500 batches × 32
+
+Results (full 76693-sample test set):
+  Ideal statevector:    ROC-AUC = 0.8704, PR-AUC = 0.0117
+  Shot-based (1000):    ROC-AUC = 0.9263, PR-AUC = 0.0153
+  No entanglement:      ROC-AUC = 0.9171, PR-AUC = 0.0319
+  Unbounded embedding:  ROC-AUC = 0.9212, PR-AUC = 0.0217
+  Classical baseline:   ROC-AUC = 0.9483, PR-AUC = 0.0364
+
+Purpose of IonQ Hardware Execution:
+  We seek to validate whether the trained 109-parameter hybrid quantum circuit
+  produces reproducible classification behavior on real trapped-ion hardware.
+  Specifically, we will compare:
+    1. Ideal statevector simulation (PennyLane lightning.qubit)
+    2. IonQ ideal simulator (cloud)
+    3. IonQ noise model simulator
+    4. IonQ Aria/Forte hardware
+  on the same frozen weights and test sequences.
+
+Software: Python 3.13.3, PennyLane 0.45.1,
+          PyTorch 2.10.0+cpu, NumPy 2.4.1

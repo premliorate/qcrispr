@@ -1,0 +1,33 @@
+{
+  "seed": 42,
+  "input_dim": 24,
+  "n_qubits": 4,
+  "n_qlayers": 1,
+  "batch_size": 32,
+  "learning_rate": 0.005,
+  "training_batches": 500,
+  "pos_weight": 6816.11,
+  "test_size": 0.2,
+  "total_parameters": 109,
+  "parameter_breakdown": {
+    "fc_in (classical)": 100,
+    "qlayer (quantum)": 4,
+    "fc_out (classical)": 5,
+    "total": 109
+  },
+  "embedding": "RX",
+  "variational": "RX",
+  "entanglement": "CNOT ring (0\u21921, 1\u21922, 2\u21923, 3\u21920)",
+  "bounded_embedding": "sigmoid(Wx+b) \u00d7 \u03c0/2",
+  "measurement": "\u27e8Z\u27e9 on all qubits",
+  "loss": "BCEWithLogitsLoss(pos_weight=6816.11)",
+  "optimizer": "Adam",
+  "versions": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "pennylane": "0.45.1",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.1",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0"
+  }
+}

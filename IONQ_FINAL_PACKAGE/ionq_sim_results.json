@@ -1,0 +1,62 @@
+{
+  "generated": "2026-09-29T19:23:57.364232+00:00",
+  "disclaimer": "API key read from environment variable only. Never stored in this file.",
+  "shot_inconsistency_resolution": {
+    "canonical_1000shot_reference": "all_results.json experiment_2_shots",
+    "canonical_roc_auc": 0.9263,
+    "canonical_pr_auc": 0.0153,
+    "shot_stability_1000_roc_auc": 0.8759,
+    "delta_roc_auc": 0.051,
+    "explanation": "The two 1000-shot runs used different PennyLane stochastic shot-sampler states because no shot seed was fixed. The delta (0.051) represents finite-shot sampling variance on this 76,693-sample test set with 11 positives. The canonical reference is all_results.json (produced alongside the frozen checkpoint). shot_stability.json is a supplementary shot-count-scaling study."
+  },
+  "local_ideal_probs_recomputed_roc": 0.8590909090909091,
+  "smoke_test": {
+    "status": "PASS",
+    "backend": "ionq.simulator",
+    "n_samples": 5,
+    "shots": 100,
+    "submission_time": "2026-09-29T19:23:57.369482+00:00",
+    "completion_time": "2026-09-29T19:24:33.374665+00:00",
+    "predictions": [
+      0.01254405826330185,
+      0.011941103264689445,
+      0.010691981762647629,
+      0.01000999752432108,
+      0.009701414965093136
+    ],
+    "note": "Authentication and circuit submission verified."
+  },
+  "ionq_ideal_simulator": {
+    "status": "SUCCESS",
+    "backend": "ionq.simulator",
+    "execution_type": "IONQ_CLOUD_SIMULATION",
+    "shots": 1000,
+    "n_samples": 111,
+    "submission_time": "2026-09-29T19:24:33.375336+00:00",
+    "completion_time": "2026-09-29T19:40:00.888579+00:00",
+    "roc_auc": 0.8554545454545455,
+    "pr_auc": 0.6356156068170983,
+    "pearson_corr_vs_ideal": 0.9252697825431824,
+    "spearman_corr_vs_ideal": 0.6642023354855542,
+    "mae_vs_ideal": 0.00022416318824980408,
+    "rmse_vs_ideal": 0.000303930951200044,
+    "note": "Cloud ideal simulation \u2014 no hardware noise."
+  },
+  "ionq_noise_simulator": {
+    "status": "SUCCESS",
+    "backend": "ionq.simulator",
+    "noise_model": "aria-1",
+    "execution_type": "IONQ_CLOUD_NOISE_SIMULATION",
+    "shots": 1000,
+    "n_samples": 111,
+    "submission_time": "2026-09-29T19:40:00.896991+00:00",
+    "completion_time": "2026-09-29T19:55:15.783795+00:00",
+    "roc_auc": 0.8818181818181818,
+    "pr_auc": 0.522506244091659,
+    "pearson_corr_vs_ideal": 0.7562775015830994,
+    "spearman_corr_vs_ideal": 0.4096446333035333,
+    "mae_vs_ideal": 0.001919055706821382,
+    "rmse_vs_ideal": 0.002028478049384626,
+    "note": "Aria-1 depolarizing + thermal relaxation noise model \u2014 NOT real QPU execution."
+  }
+}

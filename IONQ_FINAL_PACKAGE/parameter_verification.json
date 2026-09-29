@@ -1,0 +1,15 @@
+{
+  "expected": {
+    "fc_in": 100,
+    "qlayer": 4,
+    "fc_out": 5,
+    "total": 109
+  },
+  "actual": {
+    "fc_in": 100,
+    "qlayer": 4,
+    "fc_out": 5,
+    "total": 109
+  },
+  "verified": true
+}

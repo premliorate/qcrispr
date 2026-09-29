@@ -1,0 +1,142 @@
+{
+  "experiment_1_ideal": {
+    "model_name": "Quantum (ideal)",
+    "n_test_total": 76693,
+    "n_test_positive": 11,
+    "n_test_negative": 76682,
+    "roc_auc": 0.870352,
+    "pr_auc": 0.011658,
+    "threshold_used": 0.5,
+    "threshold_note": "Fixed at 0.5 \u2014 NOT tuned on test set",
+    "confusion_matrix": {
+      "tn": 76682,
+      "fp": 0,
+      "fn": 11,
+      "tp": 0
+    },
+    "sensitivity_recall": 0.0,
+    "specificity": 1.0,
+    "precision": 0.0,
+    "f1_score": 0.0,
+    "mcc": 0.0
+  },
+  "experiment_2_shots": {
+    "model_name": "Quantum (1000 shots)",
+    "n_test_total": 76693,
+    "n_test_positive": 11,
+    "n_test_negative": 76682,
+    "roc_auc": 0.926338,
+    "pr_auc": 0.015318,
+    "threshold_used": 0.5,
+    "threshold_note": "Fixed at 0.5 \u2014 NOT tuned on test set",
+    "confusion_matrix": {
+      "tn": 76682,
+      "fp": 0,
+      "fn": 11,
+      "tp": 0
+    },
+    "sensitivity_recall": 0.0,
+    "specificity": 1.0,
+    "precision": 0.0,
+    "f1_score": 0.0,
+    "mcc": 0.0,
+    "correlation_with_ideal": 0.843483,
+    "mae_vs_ideal": 0.000198
+  },
+  "experiment_3_no_entanglement": {
+    "model_name": "No entanglement",
+    "n_test_total": 76693,
+    "n_test_positive": 11,
+    "n_test_negative": 76682,
+    "roc_auc": 0.917112,
+    "pr_auc": 0.031935,
+    "threshold_used": 0.5,
+    "threshold_note": "Fixed at 0.5 \u2014 NOT tuned on test set",
+    "confusion_matrix": {
+      "tn": 76682,
+      "fp": 0,
+      "fn": 11,
+      "tp": 0
+    },
+    "sensitivity_recall": 0.0,
+    "specificity": 1.0,
+    "precision": 0.0,
+    "f1_score": 0.0,
+    "mcc": 0.0
+  },
+  "experiment_4_unbounded_embedding": {
+    "model_name": "Unbounded embedding",
+    "n_test_total": 76693,
+    "n_test_positive": 11,
+    "n_test_negative": 76682,
+    "roc_auc": 0.921194,
+    "pr_auc": 0.021714,
+    "threshold_used": 0.5,
+    "threshold_note": "Fixed at 0.5 \u2014 NOT tuned on test set",
+    "confusion_matrix": {
+      "tn": 76682,
+      "fp": 0,
+      "fn": 11,
+      "tp": 0
+    },
+    "sensitivity_recall": 0.0,
+    "specificity": 1.0,
+    "precision": 0.0,
+    "f1_score": 0.0,
+    "mcc": 0.0
+  },
+  "experiment_5_classical_baseline": {
+    "model_name": "Classical baseline",
+    "n_test_total": 76693,
+    "n_test_positive": 11,
+    "n_test_negative": 76682,
+    "roc_auc": 0.948333,
+    "pr_auc": 0.036357,
+    "threshold_used": 0.5,
+    "threshold_note": "Fixed at 0.5 \u2014 NOT tuned on test set",
+    "confusion_matrix": {
+      "tn": 76682,
+      "fp": 0,
+      "fn": 11,
+      "tp": 0
+    },
+    "sensitivity_recall": 0.0,
+    "specificity": 1.0,
+    "precision": 0.0,
+    "f1_score": 0.0,
+    "mcc": 0.0
+  },
+  "dataset_stats": {
+    "total_rows": 383463,
+    "total_positive": 56,
+    "total_negative": 383407,
+    "class_imbalance_ratio": "1:6846",
+    "sequence_lengths_found": [
+      23
+    ],
+    "input_dimension": 24,
+    "train_rows": 306770,
+    "train_positive": 45,
+    "train_negative": 306725,
+    "test_rows": 76693,
+    "test_positive": 11,
+    "test_negative": 76682
+  },
+  "versions": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "pennylane": "0.45.1",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.1",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0"
+  },
+  "timestamp": "2026-09-29T23:19:54.874039",
+  "circuit_description": {
+    "n_qubits": 4,
+    "embedding": "RX (explicit, bounded \u2208 [0, \u03c0/2])",
+    "variational": "RX (1 layer, 4 trainable params)",
+    "entanglement": "CNOT ring: 0\u21921, 1\u21922, 2\u21923, 3\u21920",
+    "measurement": "\u27e8PauliZ\u27e9 on all 4 qubits",
+    "total_params": 109
+  }
+}
