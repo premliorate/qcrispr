@@ -1,24 +1,56 @@
-# Reproducible Hybrid Quantum-Classical Simulation for CRISPR Off-Target Prediction
+# Reproducible Hybrid Quantum-Classical Simulation
+## CRISPR Off-Target Prediction — IonQ Research Credit Application
 
-## Overview
-This package prepares a reproducible, frozen 4-qubit hybrid quantum-classical neural network for execution on IonQ hardware. The objective is to validate whether the exact 109-parameter model produces consistent classification behavior across local ideal simulators, IonQ's cloud simulator, IonQ's noise-model simulators, and eventual IonQ trapped-ion QPUs.
+### Problem
+CRISPR-Cas9 guide RNA (gRNA) off-target site classification using the Listgarten Dataset II/6
+(383,463 total samples, 56 positives, 22 gRNAs, 23 bp sequences, 24 mismatch features).
 
-## Architecture
-- **Problem**: CRISPR-Cas9 Off-Target Prediction
-- **Dataset**: Listgarten Dataset II/6
-- **Architecture**: 4-qubit hybrid architecture
-- **Parameters**: 109 total (100 classical bottleneck, 4 quantum variational, 5 classical output)
-- **Exact Circuit**: 4 RX data embedding gates, 4 trainable RX variational gates, CNOT ring (0->1->2->3->0), Pauli-Z measurements on all qubits.
-- **Frozen Weights**: Model weights are frozen. No retraining is permitted.
+### Model
+A frozen 4-qubit hybrid quantum-classical neural network with **109 total parameters**:
 
-## Verified Results Summary
-- **Local Reference Results (Full Test Set)**: ROC-AUC = 0.8704
-- **Local Reference Results (111-Sample Comparison Set)**: ROC-AUC = 0.8591
-- **IonQ Ideal Simulation Results (111-Sample Comparison Set)**: ROC-AUC = 0.8555 (Correlation vs local: 0.9253)
-- **IonQ Noise-Model Results (Aria-1, 111-Sample Comparison Set)**: ROC-AUC = 0.8818
+| Component | Details |
+|---|---|
+| Input | 24 mismatch features |
+| Classical bottleneck | Linear(24→4) + sigmoid×(π/2) — 100 params |
+| Quantum embedding | 4 × RX(xᵢ) — data encoding |
+| Quantum variational | 4 × RX(θᵢ) — 4 trainable params |
+| Entanglement | CNOT ring: 0→1→2→3→0 |
+| Measurement | Pauli-Z on all 4 qubits |
+| Output layer | Linear(4→1) — 5 params |
+| Total | **109 parameters** |
 
-## Limitations
-The full held-out test set contains only 11 positive examples out of 76,693 total examples. Because of this extreme class imbalance, full-test AUC estimates are highly sensitive to ranking changes among a very small number of positives. Furthermore, this study does not demonstrate quantum advantage; the parameter-matched classical baseline outperforms the quantum model.
+### Verified Results
 
-## Next Steps
-Upon allocation of research credits, the next step is QPU execution on IonQ hardware to quantify hardware fidelity relative to the validated simulation references established in this package.
+| Experiment | Samples | Shots | ROC-AUC | Notes |
+|---|---|---|---|---|
+| Local Ideal (statevector) | 76,693 | ∞ | 0.8704 | Full test set reference |
+| Local Ideal (statevector) | 111 | ∞ | 0.8591 | IonQ comparison subset |
+| IonQ Ideal Simulator | 111 | 1,000 | 0.8555 | Cloud-executed via API |
+| IonQ Aria-1 Noise Model | 111 | 1,000 | 0.8818 | Cloud-executed via API |
+| Classical Baseline | 76,693 | N/A | 0.9483 | 105-param parameter-matched |
+
+> **Important:** The IonQ and classical results use different sample sizes and are **not** directly comparable.
+> This study does **not** claim quantum advantage.
+
+### Figures
+
+| Figure | Description |
+|---|---|
+| `figures/roc_comparison.png` | ROC-AUC across all evaluation conditions |
+| `figures/ionq_vs_local_scatter.png` | Local ideal vs IonQ simulator predictions (Pearson r = 0.9253) |
+| `figures/canonical_circuit.png` | Canonical 4-qubit circuit diagram |
+| `figures/shot_stability.png` | ROC-AUC and Pearson correlation vs shot count |
+| `figures/model_architecture.png` | Full hybrid model architecture workflow |
+
+### Limitations
+- The full test set contains only **11 positive examples** out of 76,693, making full-test AUC sensitive to ranking of a very small number of positives.
+- The 111-sample IonQ comparison set preserves all 11 positives for meaningful AUC comparison.
+- IonQ cloud simulation results are distinct from IonQ QPU hardware results.
+
+### Next Step
+Upon allocation of research credits: execute the exact frozen circuit on IonQ Aria or Forte QPU hardware
+and quantify hardware fidelity (MAE, Pearson r) relative to the validated simulation references.
+
+### Files
+See `IONQ_RESEARCH_SUMMARY.md` for the complete metrics table.
+See `IONQ_RESEARCHER_DRAFT.md` for the researcher communication template.
